@@ -4,11 +4,7 @@ from shapes import SelfCreatingShape
 
 class Circle(SelfCreatingShape):
 
-    # Override
-    @classmethod
-    @property
-    def identifier(cls) -> str:
-        return "circle"
+    IDENTIFIER = "circle"
 
     # Override
     def draw(self):

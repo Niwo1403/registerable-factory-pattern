@@ -4,11 +4,7 @@ from shapes import SelfCreatingShape
 
 class Square(SelfCreatingShape):
 
-    # Override
-    @classmethod
-    @property
-    def identifier(cls) -> str:
-        return "square"
+    IDENTIFIER = "square"
 
     # Override
     def draw(self):

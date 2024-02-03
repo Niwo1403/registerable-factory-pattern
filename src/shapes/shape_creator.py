@@ -1,21 +1,25 @@
 # std
-from abc import ABC, abstractmethod
+from typing import Type
+from abc import ABCMeta, ABC
 # custom
-from .shape import Shape
+from .shape_factory import ShapeFactory
+from ._shape_creator import _ShapeCreator
 
 
-class ShapeCreator(ABC):
+class ShapeCreatorMeta(ABCMeta, type):
 
-    # noinspection PyPropertyDefinition
-    # PyCharm doesn't detect the classmethod annotation if it's a property
-    @classmethod
-    @property
-    @abstractmethod
-    def identifier(cls) -> str:
-        pass  # properties shouldn't raise NotImplementedError
+    IDENTIFIER = None
 
-    @classmethod
-    @abstractmethod
-    def create_instance(cls, *args, **kwargs) -> Shape:
-        raise NotImplementedError("create_instance classmethod must be "
-                                  "overwritten in subclasses.")
+    def __init__(cls: Type["ShapeCreator"], name, bases, attrs):
+        super().__init__(name, bases, attrs)
+        if cls.IDENTIFIER is not None:
+            ShapeFactory.register_shape_creator(cls)
+
+    def __setattr__(cls, name, value):
+        if name == "IDENTIFIER":
+            raise AttributeError("Can't modify .IDENTIFIER")
+        return super().__setattr__(name, value)
+
+
+class ShapeCreator(_ShapeCreator, ABC, metaclass=ShapeCreatorMeta):
+    pass

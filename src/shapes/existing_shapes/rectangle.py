@@ -4,11 +4,7 @@ from shapes import SelfCreatingShape
 
 class Rectangle(SelfCreatingShape):
 
-    # Override
-    @classmethod
-    @property
-    def identifier(cls) -> str:
-        return "rectangle"
+    IDENTIFIER = "rectangle"
 
     # Override
     def draw(self):
