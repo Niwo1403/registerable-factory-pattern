@@ -2,13 +2,12 @@
 from typing import Dict, Type, Any
 from inspect import isabstract
 # custom
-from .shape import Shape
-from ._shape_creator import _ShapeCreator
+from shapes.interfaces import Shape, BaseShapeCreator
 
 
 class ShapeFactory:
 
-    __shape_creators: Dict[Any, Type[_ShapeCreator]] = {}
+    __shape_creators: Dict[Any, Type[BaseShapeCreator]] = {}
 
     @classmethod
     def create_shape(cls, identifier: Any, *args, **kwargs) -> Shape:
@@ -20,7 +19,7 @@ class ShapeFactory:
 
     @classmethod
     def register_shape_creator(cls,
-                               shape_creator: Type[_ShapeCreator]) -> None:
+                               shape_creator: Type[BaseShapeCreator]) -> None:
         if isabstract(shape_creator):
             return
         if shape_creator.IDENTIFIER is None:

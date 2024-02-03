@@ -1,8 +1,7 @@
 # std
 from abc import ABC
 # custom
-from .shape import Shape
-from .shape_creator import ShapeCreator
+from .interfaces import Shape, ShapeCreator
 
 
 class SelfCreatingShape(Shape, ShapeCreator, ABC):

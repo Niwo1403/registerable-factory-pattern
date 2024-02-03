@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from .shape import Shape
 
 
-class _ShapeCreator(ABC):
+class BaseShapeCreator(ABC):
 
     IDENTIFIER = None
 
