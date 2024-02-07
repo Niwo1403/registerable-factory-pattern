@@ -31,3 +31,5 @@ class Polygon(SelfCreatingShape):
 shape = ShapeFactory.create_shape("polygon", 11)
 shape.draw()
 shape.draw()
+
+print("Known shapes:", ShapeFactory.get_identifiers())

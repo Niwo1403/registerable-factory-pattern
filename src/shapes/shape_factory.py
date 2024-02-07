@@ -1,5 +1,5 @@
 # std
-from typing import Dict, Type, Any
+from typing import Dict, Type, Any, List
 from inspect import isabstract
 # custom
 from shapes.interfaces import Shape, BaseShapeCreator
@@ -16,6 +16,11 @@ class ShapeFactory:
         shape = cls.__shape_creators[identifier].create_instance(*args,
                                                                  **kwargs)
         return shape
+
+    @classmethod
+    def get_identifiers(cls) -> List[str]:
+        identifiers = cls.__shape_creators.keys()
+        return list(identifiers)
 
     @classmethod
     def register_shape_creator(cls,
