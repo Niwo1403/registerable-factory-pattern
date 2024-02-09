@@ -2,7 +2,7 @@
 from typing import Dict, Type, Any, List
 from inspect import isabstract
 # custom
-from shapes.interfaces import Shape, BaseShapeCreator
+from .interfaces import Shape, BaseShapeCreator
 
 
 class ShapeFactory:
